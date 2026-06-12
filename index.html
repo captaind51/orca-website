@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>ORCA Innovative Technologies — Healthcare Supply Chain Management</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('ttzt6TNsupQAu3bHn');</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -187,6 +190,8 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.08)}
 .form-group textarea{resize:vertical;min-height:100px}
 .form-submit{width:100%;padding:14px;background:var(--navy);border:none;border-radius:8px;color:var(--white);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-body)}
 .form-submit:hover{background:var(--teal)}
+.form-submit:disabled{opacity:.7;cursor:not-allowed}
+.form-error{color:#e53e3e;font-size:13px;margin-top:8px;display:none}
 
 /* ── FOOTER ── */
 footer{background:#060e1a;padding:56px 32px 32px}
@@ -218,6 +223,32 @@ footer{background:#060e1a;padding:56px 32px 32px}
   .footer-top{grid-template-columns:1fr}
   .hero-left{padding:60px 32px}
 }
+@media(max-width:600px){
+  .nav-inner{padding:0 16px}
+  .nav-logo-icon{width:36px;height:36px;min-width:36px;flex-shrink:0}
+  .nav-logo-icon svg{width:20px;height:20px}
+  .nav-logo-name{font-size:16px}
+  .nav-logo-sub{font-size:9px}
+  .btn-nav-cta{padding:7px 14px;font-size:12px}
+  .hero-left{padding:40px 20px}
+  .hero-stats{flex-direction:column;gap:16px}
+  .benefits-grid,.solutions-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .contact-form{padding:24px 16px}
+  .cta-contact{padding:60px 16px}
+  .intro{padding:60px 16px}
+  .benefits{padding:60px 16px}
+  .solutions{padding:60px 16px}
+  .problems{padding:60px 16px}
+  .how{padding:60px 16px}
+  .access{padding:60px 16px}
+  footer{padding:40px 16px 24px}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+  .tagline-banner{padding:16px}
+  .how-grid{gap:40px}
+  .problems-grid{gap:32px}
+}
 </style>
 </head>
 <body>
@@ -227,7 +258,7 @@ footer{background:#060e1a;padding:56px 32px 32px}
   <div class="nav-inner">
     <a href="#" class="nav-logo">
       <div class="nav-logo-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12c0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4-4-1.79-4-4z"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg>
+        <svg viewBox="0 0 24 24" style="width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="9" fill="none"/><path d="M8 12c0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4-4-1.79-4-4z" fill="none"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg>
       </div>
       <div class="nav-logo-text">
         <div class="nav-logo-name">ORCA</div>
@@ -393,27 +424,6 @@ footer{background:#060e1a;padding:56px 32px 32px}
           Available to contracted partners
         </div>
       </div>
-      <div class="solution-card" style="display:none">
-        <div class="solution-desc">An intelligent alerting system that keeps your supply chain ahead of shortages — notifying the right people at the right time, automatically.</div>
-        <div class="solution-tag">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Available to contracted partners
-        </div>
-      </div>
-      <div class="solution-card" style="display:none">
-        <div class="solution-desc">A frontline-friendly interface designed for the pace of healthcare — enabling fast, accurate recording of supply usage at the point of care.</div>
-        <div class="solution-tag">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Available to contracted partners
-        </div>
-      </div>
-      <div class="solution-card" style="display:none">
-        <div class="solution-desc">A single platform to manage supply chains across multiple buildings, campuses, and locations — with full organizational visibility and control.</div>
-        <div class="solution-tag">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Available to contracted partners
-        </div>
-      </div>
     </div>
     <div class="solutions-note">Each solution is licensed individually. Contact us to discuss which modules are right for your organization.</div>
   </div>
@@ -564,34 +574,35 @@ footer{background:#060e1a;padding:56px 32px 32px}
     </div>
     <div class="contact-form">
       <h3>Get in touch</h3>
-      <form action="https://formspree.io/f/mojzklvn" method="POST"><div class="form-row">
+      <div class="form-row">
         <div class="form-group">
           <label>First Name</label>
-          <input type="text" name="firstName" placeholder="Jane"/>
+          <input id="firstName" type="text" placeholder="Jane"/>
         </div>
         <div class="form-group">
           <label>Last Name</label>
-          <input type="text" placeholder="Smith"/>
+          <input id="lastName" type="text" placeholder="Smith"/>
         </div>
       </div>
       <div class="form-group">
         <label>Work Email</label>
-        <input type="email" placeholder="jane@hospital.com"/>
+        <input id="email" type="email" placeholder="jane@hospital.com"/>
       </div>
       <div class="form-group">
         <label>Organization</label>
-        <input type="text" placeholder="Toronto General Hospital"/>
+        <input id="organization" type="text" placeholder="Toronto General Hospital"/>
       </div>
       <div class="form-group">
         <label>Role / Title</label>
-        <input type="text" placeholder="Director of Supply Chain"/>
+        <input id="role" type="text" placeholder="Director of Supply Chain"/>
       </div>
       <div class="form-group">
         <label>Leave us a note</label>
-        <textarea placeholder="Tell us about your organization and what challenges you're looking to address..."></textarea>
+        <textarea id="message" placeholder="Tell us about your organization and what challenges you're looking to address..."></textarea>
       </div>
-      <button type="submit" class="form-submit">Submit →</button>
-    </div></form>
+      <div class="form-error" id="formError">Something went wrong. Please try again or email us directly.</div>
+      <button class="form-submit" id="submitBtn" onclick="handleSubmit(event)">Submit →</button>
+    </div>
   </div>
 </section>
 
@@ -645,34 +656,56 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
+
 function handleSubmit(e) {
   e.preventDefault();
-  const btn = e.target;
+  const btn = document.getElementById('submitBtn');
+  const errorEl = document.getElementById('formError');
+  const firstName = document.getElementById('firstName').value.trim();
+  const lastName = document.getElementById('lastName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const organization = document.getElementById('organization').value.trim();
+  const role = document.getElementById('role').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  if (!firstName || !email || !message) {
+    errorEl.textContent = 'Please fill in your first name, email, and message.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  errorEl.style.display = 'none';
   btn.textContent = 'Sending...';
   btn.disabled = true;
 
-  const data = {
-    firstName: document.querySelector('input[placeholder="John"]') ? document.querySelector('input[placeholder="John"]').value : '',
-    lastName: document.querySelector('input[placeholder="Smith"]') ? document.querySelector('input[placeholder="Smith"]').value : '',
-    email: document.querySelector('input[type="email"]') ? document.querySelector('input[type="email"]').value : '',
-    organization: document.querySelector('input[placeholder="Toronto General Hospital"]') ? document.querySelector('input[placeholder="Toronto General Hospital"]').value : '',
-    role: document.querySelector('input[placeholder="Director of Supply Chain"]') ? document.querySelector('input[placeholder="Director of Supply Chain"]').value : '',
-    message: document.querySelector('textarea') ? document.querySelector('textarea').value : ''
-  };
-
-  fetch('https://formspree.io/f/mojzklvn', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify(data)
-  })
-  .then(res => res.json())
-  .then(() => {
+  emailjs.send('service_3mb1hfs', 'template_oh9vy43', {
+    name: firstName + ' ' + lastName,
+    email: email,
+    phone: organization + (role ? ' — ' + role : ''),
+    message: message
+  }).then(() => {
     btn.textContent = '✓ Message sent! We\'ll be in touch soon.';
     btn.style.background = '#0d9488';
-    btn.disabled = false;
-  })
-  .catch(err => {
-    btn.textContent = 'Error — please email us directly.';
+    document.getElementById('firstName').value = '';
+    document.getElementById('lastName').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('organization').value = '';
+    document.getElementById('role').value = '';
+    document.getElementById('message').value = '';
+    setTimeout(() => {
+      btn.textContent = 'Submit →';
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 5000);
+  }).catch((err) => {
+    console.error('EmailJS error:', err);
+    errorEl.textContent = 'Something went wrong. Please try again or email us directly.';
+    errorEl.style.display = 'block';
+    btn.textContent = 'Submit →';
     btn.disabled = false;
   });
 }
+</script>
+</body>
+</html>
+
