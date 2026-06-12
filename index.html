@@ -564,10 +564,10 @@ footer{background:#060e1a;padding:56px 32px 32px}
     </div>
     <div class="contact-form">
       <h3>Get in touch</h3>
-      <div class="form-row">
+      <form action="https://formspree.io/f/mojzklvn" method="POST"><div class="form-row">
         <div class="form-group">
           <label>First Name</label>
-          <input type="text" placeholder="Jane"/>
+          <input type="text" name="firstName" placeholder="Jane"/>
         </div>
         <div class="form-group">
           <label>Last Name</label>
@@ -590,8 +590,8 @@ footer{background:#060e1a;padding:56px 32px 32px}
         <label>Leave us a note</label>
         <textarea placeholder="Tell us about your organization and what challenges you're looking to address..."></textarea>
       </div>
-      <button class="form-submit" onclick="handleSubmit(event)">Submit →</button>
-    </div>
+      <button type="submit" class="form-submit">Submit →</button>
+    </div></form>
   </div>
 </section>
 
@@ -648,10 +648,31 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 function handleSubmit(e) {
   e.preventDefault();
   const btn = e.target;
-  btn.textContent = "✓ Message sent! We'll be in touch soon.";
-  btn.style.background = '#0d9488';
-  setTimeout(() => { btn.textContent = 'Submit →'; btn.style.background = ''; }, 4000);
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  const data = {
+    firstName: document.querySelector('input[placeholder="John"]') ? document.querySelector('input[placeholder="John"]').value : '',
+    lastName: document.querySelector('input[placeholder="Smith"]') ? document.querySelector('input[placeholder="Smith"]').value : '',
+    email: document.querySelector('input[type="email"]') ? document.querySelector('input[type="email"]').value : '',
+    organization: document.querySelector('input[placeholder="Toronto General Hospital"]') ? document.querySelector('input[placeholder="Toronto General Hospital"]').value : '',
+    role: document.querySelector('input[placeholder="Director of Supply Chain"]') ? document.querySelector('input[placeholder="Director of Supply Chain"]').value : '',
+    message: document.querySelector('textarea') ? document.querySelector('textarea').value : ''
+  };
+
+  fetch('https://formspree.io/f/mojzklvn', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(() => {
+    btn.textContent = '✓ Message sent! We\'ll be in touch soon.';
+    btn.style.background = '#0d9488';
+    btn.disabled = false;
+  })
+  .catch(err => {
+    btn.textContent = 'Error — please email us directly.';
+    btn.disabled = false;
+  });
 }
-</script>
-</body>
-</html>
